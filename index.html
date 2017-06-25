@@ -9,28 +9,37 @@
     <title>BINGO PDV 2017!</title>
     <link href="dist/bootstrap.css" rel="stylesheet">
     <link href="dist/narrow-jumbotron.css" rel="stylesheet">
+    <style type="text/css">
+        *:fullscreen *:-ms-fullscreen,
+        *:-webkit-full-screen,
+        *:-moz-full-screen {
+            overflow: auto !important;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container" style="margin-left: 0; margin-right: 0; width: 100%; max-width: 100%">
-        <div class="header clearfix">
+        <div class=" clearfix">
             <nav>
                 <ul class="nav nav-pills float-right">
                     <li class="nav-item" id="divBotonNumeroNuevo">
-                        <a class="btn btn-lg btn-success" id="botonNumeroNuevo" style="margin-top: 10px;color: white;" href="javascript: nuevaBolilla();" role="button">Nuevo número</a>
+                        <a class="btn btn-lg btn-success" id="botonNumeroNuevo" style="margin-top: 0px;color: white;" href="javascript: nuevaBolilla();" role="button">Nuevo número</a>
+
                     </li>
                 </ul>
             </nav>
-            <img src="logo.jpg" style="height: 75px" alt="Logo">
+            <!--<img src="logo.jpg" style="height: 75px" alt="Logo">-->
+            <div style="display: inline;"><a class="btn btn-lg btn-primary" style="margin-top: 0px;color: white;" href="javascript: void(0);" onClick="toggleFullScreen()" role="button">↙↗</a></div>
+
         </div>
-        <h1 class="display-3" id="bolillaNueva" style="text-align:center; font-weight: bold;">¡A jugar!</h1>
+        <h1 class="display-3" id="bolillaNueva" style="text-align:center; font-weight: bold;    font-size:175px">¡A jugar!</h1>
         <hr>
-        <div class="row marketing">
-            <div class="col-lg-12" id="numerosSalieron"></div>
-        </div>
+        <div class="col-lg-12" id="numerosSalieron"></div>
         <div class="row marketing">
             <div class="col-lg-12" style="text-align:center;">
-                <a href="https://github.com/sbruselario/BingoPDV" target="_blank">sbruselario/BingoPDV</a>
+                <a style="margin-top: 0px;" href="https://github.com/sbruselario/BingoPDV" target="_blank" role="button">sbruselario/BingoPDV</a>
+
             </div>
         </div>
     </div>
@@ -48,9 +57,15 @@
             document.getElementById('divBotonNumeroNuevo').innerHTML = '<a class="btn btn-lg btn-danger" id="botonNumeroNuevo" style="margin-top: 17px" href="javascript: void(0)" role="button">ERROR</a>';
         }
 
+        /* SOLO PARA PRUEBAS
+         for (var i = 90 - 1; i >= 0; i--) {
+             nuevaBolilla();
+         }
+         */
+
         function nuevaBolilla() {
             if (bolillas.length == numeroMaximoBolillero + 1 - numeroMinimoBolillero) {
-                mostrarTxtNumero("¡Se acabaron las bolillas!");
+                mostrarTxtNumero("<h1 style=\"font-size:100px;font-weight: bold;\">¡Se acabaron las bolillas!</h1>");
             } else {
 
                 var maximo = numeroMaximoBolillero + 1 - numeroMinimoBolillero;
@@ -63,6 +78,9 @@
                 } while (bolillaYaSalio(numeroNuevo));
 
                 bolillas.push(numeroNuevo);
+
+                var audio = new Audio('aviso.mp3');
+                audio.play();
 
                 //CON ESTO ORDENO LOS NÚMEROS QUE VAN SALIENDO
                 //bolillas = bolillas.sort((a, b) => a - b);
@@ -138,11 +156,34 @@
             for (var index = 0; index < bolillas.length; ++index) {
                 document.getElementById("numerosSalieron").innerHTML = document.getElementById("numerosSalieron").innerHTML + "" + bolillas[index] + " - ";
             }
-            document.getElementById("numerosSalieron").innerHTML = "<h2>" + document.getElementById("numerosSalieron").innerHTML + "</h2>";
+            document.getElementById("numerosSalieron").innerHTML = "<h1>" + document.getElementById("numerosSalieron").innerHTML + "</h1>";
         }
 
+
+        function toggleFullScreen() {
+            if ((document.fullScreenElement && document.fullScreenElement !== null) ||
+                (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+                if (document.documentElement.requestFullScreen) {
+                    document.documentElement.requestFullScreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullScreen) {
+                    document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
+            } else {
+                if (document.cancelFullScreen) {
+                    document.cancelFullScreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                }
+            }
+
+        }
     </script>
 
 
 </body>
+
 </html>
