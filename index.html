@@ -7,8 +7,8 @@
     <meta name="description" content="Bingo PDV!">
     <meta name="author" content="sbruselario@gmail.com">
     <title>BINGO PDV!</title>
-    <link href="dist/bootstrap.css" rel="stylesheet">
-    <link href="dist/narrow-jumbotron.css" rel="stylesheet">
+    <link href="dist/css/bootstrap.css" rel="stylesheet">
+    <link href="dist/css/narrow-jumbotron.css" rel="stylesheet">
     <style type="text/css">
         *:fullscreen *:-ms-fullscreen,
         *:-webkit-full-screen,
@@ -42,7 +42,7 @@
         </div>
     </div>
     <!-- /container -->
-    <script src="dist/ie10-viewport-bug-workaround.js"></script>
+    <script src="dist/js/ie10-viewport-bug-workaround.js"></script>
 
     <script type="text/javascript">
         var numeroMinimoBolillero = 1; //mínimo número posible en el cartón (inclusive)
@@ -77,7 +77,7 @@
 
                 bolillas.push(numeroNuevo);
 
-                var audio = new Audio('aviso.mp3');
+                var audio = new Audio('dist/sounds/aviso.mp3');
                 audio.play();
 
                 //CON ESTO ORDENO LOS NÚMEROS QUE VAN SALIENDO
