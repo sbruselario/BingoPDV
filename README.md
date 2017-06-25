@@ -15,5 +15,6 @@ Para descargar la versión offline haga click [aquí][df2].
    [df2]: <https://github.com/sbruselario/BingoPDV/archive/master.zip>
 
 Sugerencias: 
+- para activar el modo pantalla completa, presionar *F11*.
 - se puede modificar el tamaño de los números con el zoom del navegador web.
 - para controlar los números de un cartón, presionar *Ctrl+F* para abrir el buscador.
