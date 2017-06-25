@@ -14,4 +14,6 @@ Para descargar la versión offline haga click [aquí][df2].
    [df1]: <https://bruselario.com/proyectos/BingoPDV/>
    [df2]: <https://github.com/sbruselario/BingoPDV/archive/master.zip>
 
-Sugerencia: para controlar los números de un cartón, presionar *Ctrl+F* para abrir el buscador.
+Sugerencias: 
+- se puede modificar el tamaño de los números con el zoom del navegador web.
+- para controlar los números de un cartón, presionar *Ctrl+F* para abrir el buscador.
