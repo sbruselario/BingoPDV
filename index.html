@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Bingo PDV!">
+    <meta name="author" content="sbruselario@gmail.com">
+    <title>BINGO PDV 2017!</title>
+    <link href="dist/bootstrap.css" rel="stylesheet">
+    <link href="dist/narrow-jumbotron.css" rel="stylesheet">
+
+    <style type="text/css">
+        a:link {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" style="margin-left: 0; margin-right: 0; width: 100%; max-width: 100%">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills float-right">
+                    <li class="nav-item" id="divBotonNumeroNuevo">
+                        <a class="btn btn-lg btn-success" id="botonNumeroNuevo" style="margin-top: 10px" href="javascript: nuevaBolilla();" role="button">Nuevo número</a>
+                    </li>
+                </ul>
+            </nav>
+            <img src="logo.jpg" style="height: 75px" alt="Logo">
+        </div>
+        <h1 class="display-3" id="bolillaNueva" style="text-align:center; font-weight: bold;">¡A jugar!</h1>
+        <hr>
+        <div class="row marketing">
+            <div class="col-lg-12" id="numerosSalieron"></div>
+        </div>
+        <div class="row marketing">
+            <div class="col-lg-12">
+                <a style="text-align:center;" href="https://github.com/sbruselario/BingoPDV" target="_blank">sbruselario/BingoPDV</a>
+            </div>
+        </div>
+    </div>
+    <!-- /container -->
+    <script src="dist/ie10-viewport-bug-workaround.js"></script>
+
+    <script type="text/javascript">
+        var numeroMinimoBolillero = 1; //mínimo número posible en el cartón (inclusive)
+        var numeroMaximoBolillero = 90; //máximo número posible en el cartón (inclusive)
+        var bolillas = [];
+
+
+        if (numeroMinimoBolillero < 0 || numeroMaximoBolillero < 0) {
+            mostrarTxtNumero("<h3>Alguno de los números mínimo o máximo del bolillero son incorrectos.<br>Consulte la documentación en <a href=\"https://github.com/sbruselario/BingoPDV\" target=\"_blank\">sbruselario/BingoPDV</a></h3>");
+            document.getElementById('divBotonNumeroNuevo').innerHTML = '<a class="btn btn-lg btn-danger" id="botonNumeroNuevo" style="margin-top: 17px" href="javascript: void(0)" role="button">ERROR</a>';
+        }
+
+        function nuevaBolilla() {
+            if (bolillas.length == numeroMaximoBolillero + 1 - numeroMinimoBolillero) {
+                mostrarTxtNumero("¡Se acabaron las bolillas!");
+            } else {
+
+                var maximo = numeroMaximoBolillero + 1 - numeroMinimoBolillero;
+                var minimo = numeroMinimoBolillero;
+                var numeroNuevo;
+
+                do {
+                    numeroNuevo = Math.floor(Math.random() * maximo) + minimo;
+                    numeroNuevo = ('0' + numeroNuevo).slice(-2);
+                } while (bolillaYaSalio(numeroNuevo));
+
+                bolillas.push(numeroNuevo);
+
+                //CON ESTO ORDENO LOS NÚMEROS QUE VAN SALIENDO
+                //bolillas = bolillas.sort((a, b) => a - b);
+
+                mostrarTxtNumero(numeroNuevo);
+                mostrarHistorial();
+
+                console.log(numeroNuevo);
+            }
+
+
+        }
+
+
+        function bolillaYaSalio(num) {
+            var index;
+            for (index = 0; index < bolillas.length; ++index) {
+                if (parseInt(num) === parseInt(bolillas[index])) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        function mostrarTxtNumero(texto) {
+            document.getElementById('botonNumeroNuevo').href = "javascript:void(0);";
+
+            document.getElementById("bolillaNueva").innerHTML = texto;
+
+            var elem = document.getElementById("bolillaNueva");
+            var colorOriginal = elem.style.color;
+
+            var delayMillis = 500;
+
+            setTimeout(function() {
+                elem.style.color = "White";
+            }, delayMillis * 1);
+            setTimeout(function() {
+                elem.style.color = colorOriginal;
+            }, delayMillis * 2);
+            setTimeout(function() {
+                elem.style.color = "White";
+            }, delayMillis * 3);
+            setTimeout(function() {
+                elem.style.color = colorOriginal;
+            }, delayMillis * 4);
+            setTimeout(function() {
+                elem.style.color = "White";
+            }, delayMillis * 5);
+            setTimeout(function() {
+                elem.style.color = colorOriginal;
+            }, delayMillis * 6);
+            setTimeout(function() {
+                elem.style.color = "White";
+            }, delayMillis * 7);
+            setTimeout(function() {
+                elem.style.color = colorOriginal;
+            }, delayMillis * 8);
+            setTimeout(function() {
+                elem.style.color = "White";
+            }, delayMillis * 9);
+            setTimeout(function() {
+                elem.style.color = colorOriginal;
+                document.getElementById('botonNumeroNuevo').href = "javascript:nuevaBolilla();";
+            }, delayMillis * 10);
+
+        }
+
+
+        function mostrarHistorial() {
+            document.getElementById("numerosSalieron").innerHTML = "";
+            for (var index = 0; index < bolillas.length; ++index) {
+                document.getElementById("numerosSalieron").innerHTML = document.getElementById("numerosSalieron").innerHTML + "" + bolillas[index] + " - ";
+            }
+            document.getElementById("numerosSalieron").innerHTML = "<h2>" + document.getElementById("numerosSalieron").innerHTML + "</h2>";
+        }
+    </script>
+
+
+</body>
+
+</html>
