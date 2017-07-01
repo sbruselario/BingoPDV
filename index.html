@@ -10,11 +10,16 @@
     <link href="dist/css/bootstrap.css" rel="stylesheet">
     <link href="dist/css/narrow-jumbotron.css" rel="stylesheet">
     <style type="text/css">
-        *:fullscreen *:-ms-fullscreen,
+            *:fullscreen *:-ms-fullscreen,
         *:-webkit-full-screen,
         *:-moz-full-screen {
             overflow: auto !important;
         }
+
+        @media (max-width: 800px) {
+            .navBotones {
+                margin-bottom: 25px;
+            }
     </style>
 </head>
 
@@ -23,15 +28,15 @@
         <div class=" clearfix">
             <nav>
                 <ul class="nav nav-pills float-right">
-                    <li class="nav-item" id="divBotonNumeroNuevo">
+                    <li class="nav-item navBotones" id="divBotonNumeroNuevo">
                         <a class="btn btn-lg btn-success" id="botonNumeroNuevo" style="margin-top: 0px;color: white;" href="javascript: nuevaBolilla();" role="button">Nuevo número</a>
                         <div style="display: inline;"><a class="btn btn-lg btn-primary" style="margin-top: 0px;color: white;" href="javascript: void(0);" onClick="toggleFullScreen()" role="button">↙↗</a></div>
                     </li>
                 </ul>
             </nav>
-            <img src="logo.jpg" style="height: 75px" alt="Logo">
+            <!--<img src="logo.jpg" style="height: 75px" alt="Logo">-->
         </div>
-        <h1 class="display-3" id="bolillaNueva" style="text-align:center; font-weight: bold;    font-size:175px">¡A jugar!</h1>
+        <h1 class="display-3" id="bolillaNueva" style="text-align:center; font-weight: bold;">¡A jugar!</h1>
         <hr>
         <div class="col-lg-12" id="numerosSalieron"></div>
         <div class="row marketing">
